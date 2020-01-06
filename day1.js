@@ -108,3 +108,23 @@ function totalFuel(modules) {
 }
 
 console.log(totalFuel(mods))
+
+function actualTotalFuel(modules) {
+    const fuelNeeded = mod => {
+        newFuel = Math.floor(mod / 3) - 2
+        console.log(mod, newFuel)
+        if (newFuel <= 2) {
+            return newFuel >= 0 ? newFuel : 0
+        }
+
+        return newFuel + fuelNeeded(newFuel)
+    }
+
+    let total = 0
+    for (let i = 0; i < modules.length; i++) {
+        total += fuelNeeded(modules[i])
+    }
+    return total
+}
+
+console.log(actualTotalFuel(mods))
