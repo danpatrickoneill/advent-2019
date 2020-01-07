@@ -20,7 +20,30 @@ function intcode_computer(codes) {
     }
 }
 
-x = [1,1,1,4,99,5,6,0,99]
-console.log(puzzle_input)
-intcode_computer(puzzle_input)
-console.log(puzzle_input)
+const target = 19690720
+// console.log(puzzle_input)
+// intcode_computer(puzzle_input)
+// console.log(puzzle_input)
+
+let noun = 0
+let verb = 0
+
+while (noun < 100) {
+    const fresh_input = puzzle_input.slice()
+    console.log(noun, verb)
+    fresh_input[1] = noun
+    fresh_input[2] = verb
+    // console.log(fresh_input)
+    intcode_computer(fresh_input)
+    console.log(fresh_input[0])
+    if (fresh_input[0] === target) {
+        console.log(`Noun: ${noun} Verb: ${verb}` + fresh_input)
+        break
+    }
+    if (verb < 100) {
+        verb++
+        continue
+    }
+    verb = 0
+    noun++
+}
