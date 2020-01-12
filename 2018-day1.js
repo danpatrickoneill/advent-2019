@@ -1,4 +1,4 @@
-puzzle_input_string = `+16
+let puzzle_input_string = `+16
     +9
     +11
     +13
@@ -1025,10 +1025,32 @@ puzzle_input_string = `+16
     -137490`
 
     
-puzzle_input = puzzle_input_string.split('\n')
+const puzzle_input = puzzle_input_string.split('\n')
     
 // console.log(puzzle_input_string)
-puzzle_input_clean = puzzle_input.map(elem => elem.trim())
-puzzle_input_cleaner = puzzle_input_clean.map(elem => elem[0] === '+' ? elem.slice(1, elem.length) : elem)
-puzzle_input_final = puzzle_input_cleaner.map(elem => Number(elem))
-console.log(puzzle_input_final)
+const puzzle_input_clean = puzzle_input.map(elem => elem.trim())
+const puzzle_input_cleaner = puzzle_input_clean.map(elem => elem[0] === '+' ? elem.slice(1, elem.length) : elem)
+const puzzle_input_final = puzzle_input_cleaner.map(elem => Number(elem))
+// console.log(puzzle_input_final)
+
+console.log(puzzle_input_final.reduce((acc, cur) => acc + cur))
+
+const frequencies = {}
+const input_length = puzzle_input_final.length
+let index = 0
+let freq = 0
+while (true) {
+    if (!(freq in frequencies)) {
+        frequencies[freq] = true
+    }
+    else {
+        console.log("Duplicate frequency: ", freq)
+        break
+    }
+    freq += puzzle_input_final[index]
+    index++
+    if (index >= input_length) {
+        index = 0
+    }
+
+}
