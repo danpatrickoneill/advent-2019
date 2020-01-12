@@ -1,4 +1,4 @@
-puzzle_input = [+16
+puzzle_input_string = `+16
     +9
     +11
     +13
@@ -1022,6 +1022,13 @@ puzzle_input = [+16
     -6
     -17
     -18
-    -137490]
+    -137490`
 
-console.log(puzzle_input)
+    
+puzzle_input = puzzle_input_string.split('\n')
+    
+// console.log(puzzle_input_string)
+puzzle_input_clean = puzzle_input.map(elem => elem.trim())
+puzzle_input_cleaner = puzzle_input_clean.map(elem => elem[0] === '+' ? elem.slice(1, elem.length) : elem)
+puzzle_input_final = puzzle_input_cleaner.map(elem => Number(elem))
+console.log(puzzle_input_final)
