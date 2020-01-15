@@ -256,36 +256,56 @@ puzzle_input_string  = `ayitmcjvlhedbsyoqfzukjpxwt
     // const puzzle_input_cleaner = puzzle_input_clean.map(elem => elem[0] === '+' ? elem.slice(1, elem.length) : elem)
     // const puzzle_input_final = puzzle_input_cleaner.map(elem => Number(elem))
     // console.log(puzzle_input)
-    
-let doubles = 0
-let triples = 0
+ 
+// Part 1 Solution
+// let doubles = 0
+// let triples = 0
 
-for (const elem of puzzle_input) {
-    double = false
-    triple = false
-    const letters = {}
-    for (const letter of elem) {
-        if (letter in letters) {
-            letters[letter]++
+// for (const elem of puzzle_input) {
+//     double = false
+//     triple = false
+//     const letters = {}
+//     for (const letter of elem) {
+//         if (letter in letters) {
+//             letters[letter]++
+//         }
+//         else {
+//             letters[letter] = 1
+//         }
+//     }
+//     for (const key in letters) {
+//         if (letters[key] === 2) {
+//             double = true
+//         }
+//         else if (letters[key] === 3) {
+//             triple = true
+//         }
+//     }
+//     if (double) {
+//         doubles++
+//     }
+//     if (triple) {
+//         triples++
+//     }
+// }
+
+// console.log(doubles*triples)
+
+let index = 0
+
+for (const elem of puzzle_input.slice(index)) {
+    for (const comp of puzzle_input.slice(index+1)) {
+        let word_index = 0
+        let differences = 0
+        while (differences <= 1 && word_index < elem.length) {
+            if (elem[word_index] !== comp[word_index]) {
+                differences++
+            }
+            word_index++
         }
-        else {
-            letters[letter] = 1
+        if (differences <= 1) {
+            console.log(elem, comp)
         }
     }
-    for (const key in letters) {
-        if (letters[key] === 2) {
-            double = true
-        }
-        else if (letters[key] === 3) {
-            triple = true
-        }
-    }
-    if (double) {
-        doubles++
-    }
-    if (triple) {
-        triples++
-    }
+    index++
 }
-
-console.log(doubles*triples)
