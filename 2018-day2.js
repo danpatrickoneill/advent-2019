@@ -249,11 +249,43 @@ puzzle_input_string  = `ayitmcjvlhedbsyoqfzukjpxwt
     ayirmcjvlhedbsyaqfzuknwxwt
     agirmcjvlhedbdyoqbzwknpxwt`
 
-    const puzzle_input = puzzle_input_string.split('\n')
+    const puzzle_input_split = puzzle_input_string.split('\n')
     
     // console.log(puzzle_input_string)
-    const puzzle_input_clean = puzzle_input.map(elem => elem.trim())
+    const puzzle_input = puzzle_input_split.map(elem => elem.trim())
     // const puzzle_input_cleaner = puzzle_input_clean.map(elem => elem[0] === '+' ? elem.slice(1, elem.length) : elem)
     // const puzzle_input_final = puzzle_input_cleaner.map(elem => Number(elem))
-    console.log(puzzle_input_clean)
+    // console.log(puzzle_input)
     
+let doubles = 0
+let triples = 0
+
+for (const elem of puzzle_input) {
+    double = false
+    triple = false
+    const letters = {}
+    for (const letter of elem) {
+        if (letter in letters) {
+            letters[letter]++
+        }
+        else {
+            letters[letter] = 1
+        }
+    }
+    for (const key in letters) {
+        if (letters[key] === 2) {
+            double = true
+        }
+        else if (letters[key] === 3) {
+            triple = true
+        }
+    }
+    if (double) {
+        doubles++
+    }
+    if (triple) {
+        triples++
+    }
+}
+
+console.log(doubles*triples)
